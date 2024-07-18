@@ -1,68 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>자기소개페이지</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <html>
+
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>자기소개페이지</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <html><head><title>일석2조</title><meta charset="utf-8"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="assets/css/main.css"></head><body>
-        <link rel="stylesheet" href="style.css" />
-        <script type="module">
-            // Firebase SDK 라이브러리 가져오기
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-            import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-            import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-            import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-    
-    
-    
-            const firebaseConfig = {
-                apiKey: "AIzaSyDOi4F31Kb60_htGf1J4bsShM_uF5OJ7cw",
-                authDomain: "sparta-dd752.firebaseapp.com",
-                projectId: "sparta-dd752",
-                storageBucket: "sparta-dd752.appspot.com",
-                messagingSenderId: "198692885865",
-                appId: "1:198692885865:web:69f7e939bef283a51959f8",
-                measurementId: "G-9N76Y0NMEJ"
-            };
-    
-    
-    
-            // Firebase 인스턴스 초기화
-            const app = initializeApp(firebaseConfig);
-            const db = getFirestore(app);
-            $("#postingbtn").click(async function () {
-                let image = $('#image').val();
-                let title = $('#title').val();
-                let content = $('#content').val();
-                let date = $('#date').val();
-                let doc = {
-                    'image': image,
-                    'title': title,
-                    'content': content,
-                    'date': date
-    
-    
-                };
-                await addDoc(collection(db, "albums"), doc);
-            })
-    
-            function openclose() {
-                $('#postingbox').toggle();
-            }
-            function makeCard() {
-                let image = $('#image').val();
-                let title = $('#title').val();
-                let content = $('#content').val();
-                let date = $('#date').val();
-    
-                let temp_html = ` 
+    <title>일석2조</title>
+    <meta charset="utf-8">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/css/main.css">
+  </head>
+
+<body>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module">
+    // Firebase SDK 라이브러리 가져오기
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCbguK8BikWqc0GgkRxScWa9npGpkYKnIM",
+      authDomain: "sparata.firebaseapp.com",
+      projectId: "sparata",
+      storageBucket: "sparata.appspot.com",
+      messagingSenderId: "883912642411",
+      appId: "1:883912642411:web:38fab7e0682833eab9462e",
+      measurementId: "G-2YHJM9PCHC"
+    };
+
+
+
+    // Firebase 인스턴스 초기화
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    $("#postingbtn").click(async function () {
+      let image = $('#image').val();
+      let title = $('#title').val();
+      let content = $('#content').val();
+      let date = $('#date').val();
+      let doc = {
+        'image': image,
+        'title': title,
+        'content': content,
+        'date': date
+
+
+      };
+      await addDoc(collection(db, "albums"), doc);
+    })
+
+    function openclose() {
+      $('#postingbox').toggle();
+    }
+    function makeCard() {
+      let image = $('#image').val();
+      let title = $('#title').val();
+      let content = $('#content').val();
+      let date = $('#date').val();
+
+      let temp_html = ` 
                 <div class="col">
                     <div class="card h-100">
                         <img src="${image}"
@@ -76,20 +83,25 @@
                         </div>
                     </div>
                 </div>`;
-                $('#card').append(temp_html);
-            }
-        </script>
+      $('#card').append(temp_html);
+    }
+  </script>
   </head>
 
   <body>
     <!-- Header -->
-     <!-- Header -->
-			<header id="header" class="alt"><div class="logo"><a >Hello <span>일석2조</span></a></div>
-				<a href="#menu">Menu</a>
-			</header><!-- Nav --><nav id="menu"><ul class="links"><li><a href="main.html">Home</a></li>
-			
-     </ul></nav>
-			<div class="frame">
+    <!-- Header -->
+    <header id="header" class="alt">
+      <div class="logo"><a>Hello <span>일석2조</span></a></div>
+      <a href="#menu">Menu</a>
+    </header><!-- Nav -->
+    <nav id="menu">
+      <ul class="links">
+        <li><a href="./index.html">Home</a></li>
+
+      </ul>
+    </nav>
+    <div class="frame">
       <nav class="navigator">
         <ul>
           <a class="nav-menu" href="main.html"></li></a>
@@ -97,7 +109,7 @@
       </nav>
 
       <div class="title-comment">
-        
+
         <h1>
           안녕하세요!<br />
           백엔드 개발자를 꿈꾸는 java_6기 <br />김준하 입니다.
@@ -105,7 +117,7 @@
       </div>
 
       <div class="profile-section">
-        <img class="image" src="img/friend.jpg" width="100"/>
+        <img class="image" src="img/friend.jpg" width="100" />
 
         <div class="comment">
           <h1 class="Languages">COMMENT</h1>
@@ -119,52 +131,55 @@
           <h3>MBTI</h3>
           <h4>INTP</h4>
           <h2>사용한 기술<br />HTML / JavaScript / CSS</h2>
-          <a href="https://www.tistory.com/member/blog" class="card-link"
-            >블로그 링크</a
-          >
-          <a href="https://github.com/arlawnsgkaa" class="card-link"
-            >깃허브 링크</a
-          >
+          <a href="https://www.tistory.com/member/blog" class="card-link">블로그 링크</a>
+          <a href="https://github.com/arlawnsgkaa" class="card-link">깃허브 링크</a>
           <h3>다들 열공!열공!합시다!</h3>
-          
+
         </div>
         <div class="mytitle">
-            
-            <h1> 방명록 남기기</h1>
-        
-        
-        <div class="mypostingbox" id="postingbox">
+
+          <h1> 방명록 남기기</h1>
+
+
+          <div class="mypostingbox" id="postingbox">
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="image" placeholder="이름">
-                <label for="floatingInput"></label>
+              <input type="email" class="form-control" id="image" placeholder="이름">
+              <label for="floatingInput"></label>
             </div>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="title" placeholder="조">
-                <label for="floatingInput"></label>
+              <input type="email" class="form-control" id="title" placeholder="조">
+              <label for="floatingInput"></label>
             </div>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="content" placeholder="TMI">
-                <label for="floatingInput"></label>
+              <input type="email" class="form-control" id="content" placeholder="TMI">
+              <label for="floatingInput"></label>
             </div>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="date" placeholder="MBTI">
-                <label for="floatingInput"></label>
+              <input type="email" class="form-control" id="date" placeholder="MBTI">
+              <label for="floatingInput"></label>
             </div>
             <div class="mybtn">
-                <button id="postingbtn" type="button" class="btn btn-dark">기록하기</button>
-                
-      
+              <button id="postingbtn" type="button" class="btn btn-dark">기록하기</button>
+
+
             </div>
-        </div>
+          </div>
         </div>
       </div>
-      
+
     </div>
-    
- 
-      
+
+
+
   </body>
   <!-- Scripts -->
-  <script src="assets/js/jquery.min.js"></script><script src="assets/js/jquery.scrollex.min.js"></script><script src="assets/js/skel.min.js"></script><script src="assets/js/util.js"></script><script src="assets/js/main.js"></script></body></html>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/skel.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
 
 </html>
