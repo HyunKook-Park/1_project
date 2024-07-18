@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자기소개페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style_deok.css" />
+    <script type="module">
+      // Firebase SDK 라이브러리 가져오기
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+      import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+      import {
+        collection,
+        addDoc,
+        doc,
+        deleteDoc,
+      } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+      import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+      // import { doc, deleteDoc } from "firebase/firestore";
+
+      // Firebase 구성 정보 설정
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyDJVpGDpvBksBu8VlP6v3KOdyem9aLzZN0",
+        authDomain: "miniproject-54cd0.firebaseapp.com",
+        projectId: "miniproject-54cd0",
+        storageBucket: "miniproject-54cd0.appspot.com",
+        messagingSenderId: "904669676371",
+        appId: "1:904669676371:web:dbc4b8e204a3aad04817a6",
+        measurementId: "G-85BNT31F1S",
+      };
+      // Firebase 인스턴스 초기화
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      $("#postingBtn").click(async function () {
+        let name = $("#name").val();
+        let comment = $("#comment").val();
+
+        let doc = {
+          name: name,
+          comment: comment,
+        };
+        await addDoc(collection(db, "member_deok"), doc);
+        alert("저장완료");
+        window.location.reload();
+      });
+
+      let docs = await getDocs(collection(db, "member_deok"));
+
+      docs.forEach((doc) => {
+        let row = doc.data();
+
+        let name = row["name"];
+        let comment = row["comment"];
+        let id = doc.id;
+        let temp_html = `
+        <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h4 class="card-title">${name}</h4>
+                <p class="card-text">${comment}</p>
+                <button id="delBtn" onClick="handleDelete('${id}')">삭제하기</button>
+              </div>
+            </div>
+          </div>
+        `;
+        $("#card").append(temp_html);
+      });
+
+      window.handleDelete = async function (id) {
+        await deleteDoc(doc(db, "member_deok", id));
+        alert("삭제 완료");
+        window.location.reload();
+      };
+
+      /*
+      async function handleDelete(id) {
+        await deleteDoc(doc(db, "member_deok", id));
+      alert("삭제 완료");
+      window.location.reload();
+        console.log("1111");
+      }*/
+    </script>
+  </head>
+
+  <body>
+    <div class="frame">
+      <nav class="navigator">
+        <ul>
+          <li><a class="nav-menu" href="main.html">HOME</a></li>
+        </ul>
+      </nav>
+
+      <div class="title-comment">
+        <img class="image" src="" />
+        <h1>
+          안녕하세요!<br />
+          백엔드 개발자를 꿈꾸는 java_6기 <br />변영덕 입니다.
+        </h1>
+      </div>
+
+      <div class="profile-section">
+        <img class="profile_picture" src="img/변영덕.jpg" />
+
+        <div class="comment">
+          <h1 class="Languages">COMMENT</h1>
+          <h3>백앤드 과정 중 나의 목표</h3>
+          <h4>
+            기본기를 가진 개발자가 되고,소통과 피드백을 잘하는 개발자가 되는
+            것입니다.
+          </h4>
+
+          <h3>TMI</h3>
+          <h4>: 이번 여름에는 바다는 못볼것 같네요...</h4>
+          <h3>MBTI</h3>
+          <h4>ISFP</h4>
+          <h2>사용한 기술<br />HTML / JavaScript / CSS/ firebase</h2>
+          <a href="https://zerodeok.tistory.com" class="card-link"
+            >블로그 링크</a
+          >
+          <a href="https://github.com/zerodeok" class="card-link"
+            >깃허브 링크</a
+          >
+          <h3>함께 열심히 해봅시다!</h3>
+        </div>
+      </div>
+      <div class="guestboxTitle">
+        <h1>Guest Comment</h1>
+      </div>
+      <div class="post" id="input-card">
+        <h1 class="postTitle">POST</h1>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="방명록 이름"
+          />
+          <label for="floatingInput">name</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="comment"
+            placeholder="방명록 내용"
+          />
+          <label for="foodTitle">Comment</label>
+        </div>
+
+        <div class="button">
+          <button type="button" class="btn btn-" id="postingBtn">
+            기록하기
+          </button>
+        </div>
+      </div>
+
+      <div class="guest_book">
+        <div id="card" class="row row-cols-3 row-cols-md-1 guest_book"></div>
+      </div>
+    </div>
+  </body>
+
+  <script></script>
+</html>

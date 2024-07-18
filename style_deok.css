@@ -1,0 +1,82 @@
+body {
+  background-color: #ddce84;
+}
+
+.frame {
+  margin: 30px 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.navigator {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+.guestboxTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: antiquewhite;
+  height: 150px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+a {
+  color: gray;
+  text-decoration: none;
+}
+.nav-menu {
+  font-family: "Montserrat", sans - serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.Languages {
+  margin-top: 0px;
+  font-size: 30 px;
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin: 30px;
+  margin-left: 20px;
+}
+
+.profile-section > img {
+  width: 300px;
+  margin-right: 80px;
+  border-radius: 100px;
+}
+.comment {
+  outline: auto;
+  outline-color: aliceblue;
+  padding: 10px;
+}
+.post {
+  font-family: "Montserrat", sans - serif;
+  outline: auto;
+  outline-color: aliceblue;
+  margin-inline: 400px;
+  padding: 20px;
+}
+.button {
+  background-color: bisque;
+  border-radius: 10px;
+  margin: 10px 100px;
+  text-align: center;
+}
+.guest_book {
+  margin-top: 10px;
+}
+.postTitle {
+  text-align: center;
+}
+.card {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+#delBtn {
+  background-color: green;
+}
